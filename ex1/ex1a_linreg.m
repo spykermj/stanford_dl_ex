@@ -14,22 +14,32 @@ addpath ../common/minFunc_2012/minFunc
 addpath ../common/minFunc_2012/minFunc/compiled
 
 % Load housing data from file.
-data = load('housing.data');
-data=data'; % put examples in columns
+#data = load('housing.data');
+#data=data'; % put examples in columns
+
+data.train = load('housing_training.data');
+data.train = data.train';
+
+data.test = load('housing_test.data');
+data.test = data.test';
+
+
 
 % Include a row of 1s as an additional intercept feature.
-data = [ ones(1,size(data,2)); data ];
+#data = [ ones(1,size(data,2)); data ];
+data.train = [ ones(1,size(data.train,2)); data.train ];
+data.test = [ ones(1,size(data.test,2)); data.test ];
 
 % Shuffle examples.
-data = data(:, randperm(size(data,2)));
+#data = data(:, randperm(size(data,2)));
 
 % Split into train and test sets
 % The last row of 'data' is the median home price.
-train.X = data(1:end-1,1:400);
-train.y = data(end,1:400);
+train.X = data.train(1:end-1,:);
+train.y = data.train(end,:);
 
-test.X = data(1:end-1,401:end);
-test.y = data(end,401:end);
+test.X = data.test(1:end-1,:);
+test.y = data.test(end,:);
 
 m=size(train.X,2);
 n=size(train.X,1);
