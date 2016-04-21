@@ -9,9 +9,6 @@
 % ''Hedonic prices and the demand for clean air''
 % J. Environ. Economics & Management, vol.5, 81-102, 1978.
 %
-addpath ../common
-addpath ../common/minFunc_2012/minFunc
-addpath ../common/minFunc_2012/minFunc/compiled
 
 % Load housing data from file.
 #data = load('housing.data');
